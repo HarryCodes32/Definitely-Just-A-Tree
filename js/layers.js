@@ -14,18 +14,18 @@ addLayer("p", {
     type: "normal",
     exponent: 0.5,
     
-    // 👇 Upgrade effects are added here
+    // Upgrade effects are calculated here
     gainMult() { 
         let mult = new Decimal(1)
-        if (hasUpgrade('p', 11)) mult = mult.times(2) // Upgrade 11 effect
-        if (hasUpgrade('p', 12)) mult = mult.times(1.5) // Upgrade 12 effect
+        if (hasUpgrade('p', 11)) mult = mult.times(2) 
+        if (hasUpgrade('p', 12)) mult = mult.times(1.5) 
         if (hasUpgrade('p', 13)) {
             let pointBoost = player.points.pow(-0.75).add(1)
             mult = mult.times(pointBoost)
         }
         
         return mult
-    }, // <-- FIX 1: Removed the extra closing lines
+    },
     
     gainExp() { 
         return new Decimal(1)
@@ -46,10 +46,16 @@ addLayer("p", {
             description: "One and one half's the amount of points gained when clicking.",
             cost: new Decimal(50),
         },
-        13: { // <-- FIX 2: Added missing comma after upgrade 13's closing brace.
+        13: {
             title: "Progression is pretty slow currently...",
             description: "Using multipliers it gives a slight boost.",
             cost: new Decimal(250),
+            
+            // 👇 New Dynamic Boost Display
+            tooltip: () => {
+                let boost = player.points.pow(-0.75).add(1)
+                return "Currently: **x" + format(boost) + "**"
+            },
         },	
-    }, // <-- FIX 3: Added missing comma after the 'upgrades' object to separate it from any potential future properties.
+    },
 })
