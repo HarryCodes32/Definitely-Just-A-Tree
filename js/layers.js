@@ -51,7 +51,7 @@ addLayer("p", {
             cost: new Decimal(250),
 	    14: {
             title: "Oh look! Tripling!",
-            description: "You finally triple stuff now!",
+            description: "You finally tripling stuff now!",
             cost: new Decimal(2500),
         },	
     },
