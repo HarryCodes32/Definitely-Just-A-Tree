@@ -19,6 +19,14 @@ addLayer("p", {
         let mult = new Decimal(1)
         if (hasUpgrade('p', 11)) mult = mult.times(2) // Upgrade 11 effect
         if (hasUpgrade('p', 12)) mult = mult.times(1.5) // <-- Upgrade 12 effect added
+	if (hasUpgrade('p', 13)) {
+            let pointBoost = player.points.pow(-0.75).add(1)
+            mult = mult.times(pointBoost)
+        }
+        
+        return mult
+    },
+
         return mult
     },
     
@@ -37,9 +45,14 @@ addLayer("p", {
             cost: new Decimal(10),
         }, // <--- FIX 1
         12: {
-            title: "Your progressing slightly faster now....",
+            title: "Your progressing slightly faster now...",
             description: "One and one half's the amount of points gained when clicking.",
             cost: new Decimal(50),
         },
+	    13: {
+            title: "Progression is pretty slow currently...",
+            description: "Using multipliers it gives a slight boost.",
+            cost: new Decimal(250),
+        },	
     },
 })
