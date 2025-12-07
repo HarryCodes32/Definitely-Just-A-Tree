@@ -2,24 +2,38 @@ addLayer("p", {
     name: "prestige",
     symbol: "P",
     position: 0,
-    startData() { return {
-        unlocked: true, // This ensures the layer is visible from the start
-		points: new Decimal(0),
-    }},
+    
+    // Core Data
+    startData() { 
+        return {
+            unlocked: true, // Set to true to ensure layer is immediately visible
+            points: new Decimal(0),
+        }
+    },
     color: "#498563",
     requires: new Decimal(10),
     resource: "prestige points",
     baseResource: "points",
-    baseAmount() {return player.points},
+    baseAmount() {
+        return player.points
+    },
     type: "normal",
     exponent: 0.5,
     
-    // Upgrade effects are calculated here
+    // Gain Multiplier (where all upgrade effects are applied)
     gainMult() { 
         let mult = new Decimal(1)
+        
+        // Upgrade 11: Double point gain
         if (hasUpgrade('p', 11)) mult = mult.times(2) 
+        
+        // Upgrade 12: 1.5x point gain
         if (hasUpgrade('p', 12)) mult = mult.times(1.5) 
+        
+        // Upgrade 13: Double point gain (as requested in the last working snippet)
         if (hasUpgrade('p', 13)) mult = mult.times(2) 
+        
+        // Upgrade 14: Triple point gain
         if (hasUpgrade('p', 14)) mult = mult.times(3) 
         
         return mult
@@ -28,12 +42,17 @@ addLayer("p", {
     gainExp() { 
         return new Decimal(1)
     },
+    
+    // Visibility and Layout
     row: 0,
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    // 👇 FIX: This ensures the layer is always visible, fulfilling your request.
-    layerShown(){return true}, 
+    layerShown() {
+        return true
+    }, // This ensures the layer is always visible
+    
+    // Upgrades
     upgrades: {
         11: {
             title: "Hello!",
@@ -54,6 +73,7 @@ addLayer("p", {
             title: "Oh look! Tripling!",
             description: "You finally tripling stuff now!",
             cost: new Decimal(2500),
-        },	
-    },
+        }, // No comma here, as it is the last item in the 'upgrades' object
+    }, // No comma here, as it is the last item in the 'p' object
+})
 })
