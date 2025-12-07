@@ -30,7 +30,7 @@ addLayer("p", {
     description: "Double your point gain.",
     cost: new Decimal(10),
 if (hasUpgrade('p', 11)) gain = gain.times(2)
-        },
-    },
+        ],
+   ],
 
 })
