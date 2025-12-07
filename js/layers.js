@@ -39,7 +39,7 @@ addLayer("p", {
         12: {
             title: "Some doubling action.",
             description: "Doubles the amount of points gained when clicking.",
-            cost: new Decimal(350),
+            cost: new Decimal(50),
         },
     },
 })
