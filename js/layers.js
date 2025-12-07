@@ -22,8 +22,8 @@ addLayer("p", {
         if (hasUpgrade('p', 13)) mult = mult.times(2) 
         if (hasUpgrade('p', 14)) mult = mult.times(3) 
         
-        return mult // <-- FIXED: return statement is now inside the function scope
-    }, // <-- FIXED: Closing brace for gainMult()
+        return mult
+    },
     
     gainExp() { 
         return new Decimal(1)
@@ -48,11 +48,11 @@ addLayer("p", {
             title: "Progression is pretty slow currently...",
             description: "Another Doubling...",
             cost: new Decimal(250),
-        }, // <-- FIXED: Added closing brace for upgrade 13
-        14: { // <-- Now correctly placed as a separate upgrade
+        }, // <-- Correctly closed upgrade 13
+        14: { // <-- Now correctly a separate upgrade object
             title: "Oh look! Tripling!",
             description: "You finally tripling stuff now!",
             cost: new Decimal(2500),
-        }, // <-- Added closing brace for upgrade 14 (already existed in original)
-    }, // <-- Closing brace for upgrades object (already existed in original)
+        },
+    },
 })
