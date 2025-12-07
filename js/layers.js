@@ -18,7 +18,7 @@ addLayer("p", {
     gainMult() { 
         let mult = new Decimal(1)
         if (hasUpgrade('p', 11)) mult = mult.times(2) // Upgrade 11 effect
-        if (hasUpgrade('p', 12)) mult = mult.times(2) // <-- Upgrade 12 effect added
+        if (hasUpgrade('p', 12)) mult = mult.times(1.5) // <-- Upgrade 12 effect added
         return mult
     },
     
@@ -37,8 +37,8 @@ addLayer("p", {
             cost: new Decimal(10),
         }, // <--- FIX 1
         12: {
-            title: "Some doubling action.",
-            description: "Doubles the amount of points gained when clicking.",
+            title: "Your progressing slightly faster now....",
+            description: "One and one half's the amount of points gained when clicking.",
             cost: new Decimal(50),
         },
     },
