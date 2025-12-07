@@ -14,10 +14,11 @@ addLayer("p", {
     type: "normal",
     exponent: 0.5,
     
-    // 👇 The upgrade effect is added here
+    // 👇 Upgrade effects are added here
     gainMult() { 
         let mult = new Decimal(1)
-        if (hasUpgrade('p', 11)) mult = mult.times(2) // <-- Upgrade 11 effect added
+        if (hasUpgrade('p', 11)) mult = mult.times(2) // Upgrade 11 effect
+        if (hasUpgrade('p', 12)) mult = mult.times(2) // <-- Upgrade 12 effect added
         return mult
     },
     
@@ -30,10 +31,11 @@ addLayer("p", {
     ],
     layerShown(){return true},
     upgrades: {
-        11: {
+        11: { // <-- Fix 1: Added closing brace and comma here
             title: "Hello!",
             description: "Double your point gain.",
             cost: new Decimal(10),
+        }, // <--- FIX 1
         12: {
             title: "Some doubling action.",
             description: "Doubles the amount of points gained when clicking.",
