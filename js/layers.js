@@ -51,8 +51,12 @@ addLayer("p", {
         }, // <-- Correctly closed upgrade 13
         14: { // <-- Now correctly a separate upgrade object
             title: "Oh look! Tripling!",
-            description: "You finally tripling stuff now!",
-            cost: new Decimal(2500),
+            description: "You are finally tripling stuff now!",
+            cost: new Decimal(500),
+        15: { // <-- Now correctly a separate upgrade object
+            title: "Multiplying... multiplying...",
+            description: "Some formula is now helping...",
+            cost: new Decimal(1000),
         },
     },
 })
