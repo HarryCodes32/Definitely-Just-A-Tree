@@ -20,6 +20,7 @@ addLayer("p", {
         if (hasUpgrade('p', 11)) mult = mult.times(2) 
         if (hasUpgrade('p', 12)) mult = mult.times(1.5) 
         if (hasUpgrade('p', 13)) mult = mult.times(2)       
+	    if (hasUpgrade('p', 14)) mult = mult.times(3)       
         }
         
         return mult
@@ -48,12 +49,10 @@ addLayer("p", {
             title: "Progression is pretty slow currently...",
             description: "Another Doubling...",
             cost: new Decimal(250),
-            
-            // 👇 New Dynamic Boost Display
-            tooltip: () => {
-                let boost = player.points.pow(-0.75).add(1)
-                return "Currently: **x" + format(boost) + "**"
-            },
+	    14: {
+            title: "Oh look! Tripling!",
+            description: "You finally triple stuff now!",
+            cost: new Decimal(2500),
         },	
     },
 })
