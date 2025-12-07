@@ -23,14 +23,17 @@ addLayer("p", {
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
-		},
-	    layerShown(){return true}
-	    upgrades: {
-        11: {    title: "Hello!",
-    description: "Double your point gain.",
-    cost: new Decimal(10),
-if (hasUpgrade('p', 11)) gain = gain.times(2)
-        ],
-   ],
-
+    ], // <-- Fix 1: Removed extra }, and added proper closing bracket and comma
+    layerShown(){return true}, // <-- Fix 2: Changed to proper key-value pair and added comma
+    upgrades: { // <-- Fix 3: Added the upgrades property key and opening brace
+        11: {
+            title: "Hello!",
+            description: "Double your point gain.",
+            cost: new Decimal(10),
+        }, // <-- Fix 4: The 'if (hasUpgrade...)' line does not belong here. It is for the point gain function.
+    }, // <-- Fix 5: Added closing brace for upgrades
+    // The line below should be in the point gain function, not here:
+    // if (hasUpgrade('p', 11)) gain = gain.times(2) 
+    
+    // Fix 6: Removed extraneous closing brackets/commas
 })
