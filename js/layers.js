@@ -2,57 +2,37 @@ addLayer("p", {
     name: "prestige",
     symbol: "P",
     position: 0,
-    
-    // Core Data
-    startData() { 
-        return {
-            unlocked: true, // Set to true to ensure layer is immediately visible
-            points: new Decimal(0),
-        }
-    },
+    startData() { return {
+        unlocked: true,
+        points: new Decimal(0),
+    }},
     color: "#498563",
     requires: new Decimal(10),
     resource: "prestige points",
     baseResource: "points",
-    baseAmount() {
-        return player.points
-    },
+    baseAmount() {return player.points},
     type: "normal",
     exponent: 0.5,
     
-    // Gain Multiplier (where all upgrade effects are applied)
+    // Upgrade effects are calculated here
     gainMult() { 
         let mult = new Decimal(1)
-        
-        // Upgrade 11: Double point gain
         if (hasUpgrade('p', 11)) mult = mult.times(2) 
-        
-        // Upgrade 12: 1.5x point gain
         if (hasUpgrade('p', 12)) mult = mult.times(1.5) 
-        
-        // Upgrade 13: Double point gain (as requested in the last working snippet)
         if (hasUpgrade('p', 13)) mult = mult.times(2) 
-        
-        // Upgrade 14: Triple point gain
         if (hasUpgrade('p', 14)) mult = mult.times(3) 
         
-        return mult
-    }, 
+        return mult // <-- FIXED: return statement is now inside the function scope
+    }, // <-- FIXED: Closing brace for gainMult()
     
     gainExp() { 
         return new Decimal(1)
     },
-    
-    // Visibility and Layout
     row: 0,
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown() {
-        return true
-    }, // This ensures the layer is always visible
-    
-    // Upgrades
+    layerShown(){return true},
     upgrades: {
         11: {
             title: "Hello!",
@@ -68,12 +48,11 @@ addLayer("p", {
             title: "Progression is pretty slow currently...",
             description: "Another Doubling...",
             cost: new Decimal(250),
-        },
-        14: {
+        }, // <-- FIXED: Added closing brace for upgrade 13
+        14: { // <-- Now correctly placed as a separate upgrade
             title: "Oh look! Tripling!",
             description: "You finally tripling stuff now!",
             cost: new Decimal(2500),
-        }, // No comma here, as it is the last item in the 'upgrades' object
-    }, // No comma here, as it is the last item in the 'p' object
-})
+        }, // <-- Added closing brace for upgrade 14 (already existed in original)
+    }, // <-- Closing brace for upgrades object (already existed in original)
 })
