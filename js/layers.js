@@ -19,9 +19,7 @@ addLayer("p", {
         let mult = new Decimal(1)
         if (hasUpgrade('p', 11)) mult = mult.times(2) 
         if (hasUpgrade('p', 12)) mult = mult.times(1.5) 
-        if (hasUpgrade('p', 13)) {
-            let pointBoost = player.points.pow(-0.75).add(1)
-            mult = mult.times(pointBoost)
+        if (hasUpgrade('p', 13)) mult = mult.times(2)       
         }
         
         return mult
@@ -48,7 +46,7 @@ addLayer("p", {
         },
         13: {
             title: "Progression is pretty slow currently...",
-            description: "Using multipliers it gives a slight boost.",
+            description: "Another Doubling...",
             cost: new Decimal(250),
             
             // 👇 New Dynamic Boost Display
