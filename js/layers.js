@@ -19,7 +19,10 @@ addLayer("p", {
         let mult = new Decimal(1)
         if (hasUpgrade('p', 11)) mult = mult.times(2) 
         if (hasUpgrade('p', 12)) mult = mult.times(1.5) 
-        if (hasUpgrade('p', 13)) mult = mult.times(2) 
+        
+        // Apply the dynamic effect of upgrade 13
+        if (hasUpgrade('p', 13)) mult = mult.times(upgradeEffect('p', 13))
+        
         if (hasUpgrade('p', 14)) mult = mult.times(3) 
         
         return mult
@@ -45,18 +48,32 @@ addLayer("p", {
             cost: new Decimal(50),
         },
         13: {
-            title: "Progression is pretty slow currently...",
-            description: "Another Doubling...",
+            title: "Prestige Power!",
+            // Display the current calculated multiplier in the description
+            description: "Prestige Point gain is multiplied by **(1 + 0.1 × Prestige Points)**.",
             cost: new Decimal(250),
-        }, // <-- Correctly closed upgrade 13
-        14: { // <-- Now correctly a separate upgrade object
+            
+            // This function calculates the multiplier based on player.p.points
+            effect() {
+                // Get the player's prestige points (p.points)
+                let pp = player.p.points
+                
+                // Calculate the multiplier: 1 + (0.1 * PP)
+                let power = pp.times(0.1).plus(1) 
+                
+                return power
+            },
+            
+            // This provides the text displayed below the upgrade to show the actual effect
+            effectDisplay() {
+                // Returns the calculated effect, rounded to 3 decimal places for display
+                return "x" + format(upgradeEffect('p', 13), 3)
+            }
+        },
+        14: {
             title: "Oh look! Tripling!",
-            description: "You are finally tripling stuff now!",
-            cost: new Decimal(500),
-        15: { // <-- Now correctly a separate upgrade object
-            title: "Multiplying... multiplying...",
-            description: "Some formula is now helping...",
-            cost: new Decimal(1000),
+            description: "You finally tripling stuff now!",
+            cost: new Decimal(2500),
         },
     },
 })
