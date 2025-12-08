@@ -43,27 +43,25 @@ addLayer("p", {
     upgrades: {
         11: {
             title: "Hello!",
-            // Reverted description
             description: "Double your point gain.",
             cost: new Decimal(10),
         },
         12: {
             title: "Your progressing slightly faster now...",
-            // Reverted description
             description: "One and one half's the amount of points gained when clicking.",
             cost: new Decimal(50),
         },
         13: {
             title: "Progression is pretty slow currently...",
-            // Reverted description
             description: "Another Doubling...",
             cost: new Decimal(250),
-            // Removed effect() and effectDisplay() functions
-        }, // <-- FIXED: Closing brace for upgrade 13 was here
+        }, // <-- FIXED: Closing brace for upgrade 13
         14: {
-            title: "Some more points it seems?",
-            description: "Your getting some stuff",
+            // KEPT: Your title
+            title: "Some more points it seems?", 
+            // KEPT: Your description
+            description: "Your getting some stuff", 
             cost: new Decimal(2500),
         },
-    },
+    }, // <-- Closing brace for upgrades object
 })
