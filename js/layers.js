@@ -44,24 +44,24 @@ addLayer("p", {
         11: {
             title: "Hello!",
             description: "Double your point gain.",
-            cost: new Decimal(10),
+            cost: new Decimal(5),
         },
         12: {
             title: "Your progressing slightly faster now...",
-            description: "One and one half's the amount of points gained when clicking.",
-            cost: new Decimal(50),
+            description: "Boosts point gain by 1.5.",
+            cost: new Decimal(25),
         },
         13: {
             title: "Progression is pretty slow currently...",
-            description: "Another Doubling...",
-            cost: new Decimal(250),
+            description: "Another boost.",
+            cost: new Decimal(100),
         }, // <-- FIXED: Closing brace for upgrade 13
         14: {
             // KEPT: Your title
             title: "Some more points it seems?", 
             // KEPT: Your description
-            description: "Your getting some stuff", 
-            cost: new Decimal(2500),
+            description: "Your progressing quicker.", 
+            cost: new Decimal(250),
         },
     }, // <-- Closing brace for upgrades object
 })
